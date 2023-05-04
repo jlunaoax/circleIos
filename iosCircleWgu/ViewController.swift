@@ -12,18 +12,20 @@ class ViewController: UIViewController {
     var value = 0;
     
     @IBOutlet weak var btnDecrementar: UIButton!
+    @IBOutlet weak var btnViewResults: UIButton!
     @IBOutlet weak var myLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         btnDecrementar.isEnabled = false;
+        btnViewResults.isEnabled = false;
         showMessage(value: value);
     }
 
     @IBAction func btnIncrement(_ sender: Any) {
         guard let button = sender as? UIButton else { return }
         value = value + 1;
-        btnDecrementar.isEnabled = true;
+        validateCounter();
         showMessage(value: value);
     }
     
@@ -32,14 +34,33 @@ class ViewController: UIViewController {
         if (value > 0) {
             value = value - 1;
         }
-        if (value == 0 ) {
-            btnDecrementar.isEnabled = false;
-        }
+        validateCounter();
         showMessage(value: value);
     }
     
     func showMessage(value: Int) {
         myLabel.text="Current value = \(value)";
+    }
+    
+    func validateCounter() {
+        if (value == 0 ) {
+            btnDecrementar.isEnabled = false;
+        } else
+        {
+            btnDecrementar.isEnabled = true;
+        }
+        if (value >= 10) {
+            btnViewResults.isEnabled = true;
+        } else
+        {
+            btnViewResults.isEnabled = false;
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let controller = segue.destination as? SecondViewController else { return }
+        
+        controller.contador = value
     }
 }
 
