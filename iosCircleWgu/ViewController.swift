@@ -42,6 +42,10 @@ class ViewController: UIViewController {
         myLabel.text="Current value = \(value)";
     }
     
+    @IBAction func btnGoToNextView(_ sender: Any) {
+        goToNextView()
+    }
+    
     func validateCounter() {
         if (value == 0 ) {
             btnDecrementar.isEnabled = false;
@@ -57,10 +61,17 @@ class ViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let controller = segue.destination as? SecondViewController else { return }
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let controller = segue.destination as? CreateCompanyController else { return }
         
         controller.contador = value
+    }*/
+    
+    private func goToNextView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let controller = storyboard.instantiateViewController(identifier: "CreateCompanyController") as? CreateCompanyController else { return }
+        //controller.valueText = "\(value)"
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
