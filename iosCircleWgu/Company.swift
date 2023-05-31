@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Company {
+/*struct Company {
     let name: String
     let foundationYear: Int
     let founder: String
@@ -28,4 +28,4 @@ extension Company {
             Company(name: "Microsoft", foundationYear: 1975, founder: "Bill Gates", image: "microsoft")
         ]
     }
-}
+}*/

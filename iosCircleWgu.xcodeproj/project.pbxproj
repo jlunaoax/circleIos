@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111015FB2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 111015F92A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld */; };
+		1112E18D2A20171000D2658B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112E18C2A20171000D2658B /* CoreDataManager.swift */; };
 		111440FF29F0A37400DF2DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111440FE29F0A37400DF2DA9 /* AppDelegate.swift */; };
 		1114410129F0A37400DF2DA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114410029F0A37400DF2DA9 /* SceneDelegate.swift */; };
 		1114410329F0A37400DF2DA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114410229F0A37400DF2DA9 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111015FA2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOSLearningCircleModels.xcdatamodel; sourceTree = "<group>"; };
+		1112E18C2A20171000D2658B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		111440FB29F0A37400DF2DA9 /* iosCircleWgu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosCircleWgu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		111440FE29F0A37400DF2DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1114410029F0A37400DF2DA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				119832812A10396600AF6C7C /* CompaniesController.swift */,
 				119C18442A10450B0060F29E /* CompanyCell.swift */,
 				119C18452A10450B0060F29E /* CompanyCell.xib */,
+				111015F92A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld */,
+				1112E18C2A20171000D2658B /* CoreDataManager.swift */,
 			);
 			path = iosCircleWgu;
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 				1114410329F0A37400DF2DA9 /* ViewController.swift in Sources */,
 				119C18462A10450B0060F29E /* CompanyCell.swift in Sources */,
 				111440FF29F0A37400DF2DA9 /* AppDelegate.swift in Sources */,
+				111015FB2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld in Sources */,
+				1112E18D2A20171000D2658B /* CoreDataManager.swift in Sources */,
 				1114410129F0A37400DF2DA9 /* SceneDelegate.swift in Sources */,
 				11908D5E2A0ADFFA00C62CB6 /* Company.swift in Sources */,
 			);
@@ -378,6 +386,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		111015F92A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				111015FA2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodel */,
+			);
+			currentVersion = 111015FA2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodel */;
+			path = IOSLearningCircleModels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 111440F329F0A37400DF2DA9 /* Project object */;
 }
