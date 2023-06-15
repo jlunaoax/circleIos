@@ -8,6 +8,12 @@
 import UIKit
 import CoreData
 
+enum CreateCompanyControllerState {
+    case add
+    case edit
+    case detail
+}
+
 protocol CreateCompanyDelegate: AnyObject {
     func createCompanyController(_ createCompanyController: CreateCompanyController, didCreateCompany company: Company)
     
@@ -33,11 +39,29 @@ class CreateCompanyController: UIViewController {
     
     var company: Company?
     
+    var state:CreateCompanyControllerState = .edit
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = company != nil ? "Edit company" : "Create company"
-        
+        switch state {
+        case .add:
+            navigationItem.title = "Create company"
+            setSaveButton()
+        case .edit:
+            navigationItem.title = "Edit company"
+            setSaveButton()
+        case .detail:
+            navigationItem.title = "Company"
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setSaveButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .save,
                                                             primaryAction: UIAction.init(handler: { [weak self] _ in
             guard let self = self else { return }
@@ -45,35 +69,38 @@ class CreateCompanyController: UIViewController {
         }))
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private func setupUI() {
+        switch state {
+        case .add, .edit:
+            btnAttachImage.isHidden = false
+        case .detail:
+            btnAttachImage.isHidden = true
+            // txtCompanyName.isUserInteractionEnabled = false
+            
+        }
         guard let company = company else {
             companyImageView.image = UIImage(systemName: "person.crop.circle.dashed")
             // btnAttachImage.isHidden = false
             return
         }
         
-        // btnAttachImage.isHidden = true
-        //guard let nombreLbl = nombre else { return }
-        //companyImageView.image = UIImage(named: company.image)
         txtCompanyName.text = company.name
+        txtFounder.text = company.founder
         if let founded = company.founded {
             datePicker.date = founded
         }
         if let imageData = company.imageData {
             companyImageView.image = UIImage(data: imageData)
+            setupImage()
         } else {
             companyImageView.image = UIImage(systemName: "person.crop.circle.dashed")
         }
         
-        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
-        companyImageView.clipsToBounds = true
-        companyImageView.layer.borderColor = UIColor.black.cgColor
-        companyImageView.layer.borderWidth = 2
-        //txtFoundationYear.text = "\(company.foundationYear)"
-        //txtFounder.text = company.founder
-        
+    }
+    
+    
+    private func setupImage() {
+        companyImageView.setCircularImageView()
     }
     
    
@@ -84,14 +111,6 @@ class CreateCompanyController: UIViewController {
         :
         performCreateCompany()
         
-      /*  guard let name = txtCompanyName.text,
-              let founder = txtFounder.text,
-              let yearFoundationString = txtFoundationYear.text,
-              let yearFoundationInt = Int(yearFoundationString) else { return }
-        let companyCreated = Company(name: name,
-                                     foundationYear: yearFoundationInt,
-                                     founder: founder,
-                                     image: "")*/
     }
     
     private func performCreateCompany() {
@@ -100,6 +119,7 @@ class CreateCompanyController: UIViewController {
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(txtCompanyName.text, forKey: "name")
         company.setValue(datePicker.date, forKey: "founded")
+        company.setValue(txtFounder.text, forKey: "founder")
         if let image = companyImageView.image {
             let imageData = image.jpegData(compressionQuality: 0.8)
             company.setValue(imageData, forKey: "imageData")
@@ -119,6 +139,7 @@ class CreateCompanyController: UIViewController {
         let context = CoreDataManager.shared.context
         company?.name = txtCompanyName.text
         company?.founded = datePicker.date
+        company?.founder = txtFounder.text
         
         if let image = companyImageView.image {
             let imageData = image.jpegData(compressionQuality: 0.8)
@@ -146,6 +167,7 @@ class CreateCompanyController: UIViewController {
             let imagePicker = UIImagePickerController()
             imagePicker.sourceType = .photoLibrary
             imagePicker.delegate = self
+            imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true)
         }
         
@@ -162,8 +184,14 @@ class CreateCompanyController: UIViewController {
 
 extension CreateCompanyController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.originalImage] as? UIImage else { return }
-        companyImageView.image = image
+        if let editImage = info[.editedImage] as? UIImage {
+            companyImageView.image = editImage
+        }
+        else if let originalImage = info[.originalImage] as? UIImage {
+            companyImageView.image = originalImage
+            
+        }
+        setupImage()
         dismiss(animated: true)
     }
 }

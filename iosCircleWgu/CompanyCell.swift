@@ -27,14 +27,10 @@ class CompanyCell: UITableViewCell {
        // companyImageView.image = UIImage(systemName: "person.crop.circle.dashed")
         if let imageData = company.imageData {
             companyImageView.image = UIImage(data: imageData)
+            companyImageView.setCircularImageView()
         } else {
             companyImageView.image = UIImage(systemName: "person.crop.circle.dashed")
         }
-        
-        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
-        companyImageView.clipsToBounds = true
-        companyImageView.layer.borderColor = UIColor.black.cgColor
-        companyImageView.layer.borderWidth = 2
     }
     
 }

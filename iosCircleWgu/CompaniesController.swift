@@ -33,11 +33,7 @@ class CompaniesController: UITableViewController {
     
     @objc
     private func didTapAdd() {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "CreateCompanyController") as? CreateCompanyController else { return }
-        controller.delegate = self
-        let navController = UINavigationController(rootViewController: controller)
-        present(navController, animated: true)
+        navigate(company: nil, state: .add)
     }
     
     private func fetchCompanies() {
@@ -50,6 +46,20 @@ class CompaniesController: UITableViewController {
             tableView.reloadData()
         } catch let fetchError {
             print("Failed to fetch companies: \(fetchError)")
+        }
+    }
+    
+    private func navigate(company:Company?, state:CreateCompanyControllerState) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "CreateCompanyController") as? CreateCompanyController else { return }
+        controller.company = company
+        controller.delegate = self
+        controller.state = state
+        if (state != .detail) {
+            let navController = UINavigationController(rootViewController: controller)
+            present(navController, animated: true)
+        } else {
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
@@ -72,10 +82,7 @@ extension CompaniesController {
 // MARK: - UITableViewDelegate
 extension CompaniesController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "CreateCompanyController") as? CreateCompanyController else { return }
-        controller.company = companies[indexPath.row]
-        navigationController?.pushViewController(controller, animated: true)
+        navigate(company: companies[indexPath.row], state: .detail)
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -89,12 +96,7 @@ extension CompaniesController {
             [weak self] _, _, completionHandler in
             guard let self = self else {return}
             
-            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "CreateCompanyController") as? CreateCompanyController else { return }
-            controller.company = self.companies[indexPath.row]
-            controller.delegate = self
-            let navController = UINavigationController(rootViewController: controller)
-            self.present(navController, animated: true)
+            self.navigate(company: self.companies[indexPath.row], state: .edit)
             
             completionHandler(true)
         }
