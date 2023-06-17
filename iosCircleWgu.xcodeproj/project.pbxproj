@@ -15,7 +15,9 @@
 		1114410629F0A37400DF2DA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1114410429F0A37400DF2DA9 /* Main.storyboard */; };
 		1114410829F0A37600DF2DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1114410729F0A37600DF2DA9 /* Assets.xcassets */; };
 		1114410B29F0A37600DF2DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1114410929F0A37600DF2DA9 /* LaunchScreen.storyboard */; };
+		111B255E2A3E25F400948E3F /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B255D2A3E25F400948E3F /* ProductListView.swift */; };
 		11475A9B2A3AADED008C5EEF /* UIImageView+CircularImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11475A9A2A3AADED008C5EEF /* UIImageView+CircularImage.swift */; };
+		11475AA12A3ABC4E008C5EEF /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11475AA02A3ABC4E008C5EEF /* HTTPClient.swift */; };
 		11908D5E2A0ADFFA00C62CB6 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11908D5D2A0ADFFA00C62CB6 /* Company.swift */; };
 		119832822A10396600AF6C7C /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119832812A10396600AF6C7C /* CompaniesController.swift */; };
 		119C18462A10450B0060F29E /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119C18442A10450B0060F29E /* CompanyCell.swift */; };
@@ -34,7 +36,9 @@
 		1114410729F0A37600DF2DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1114410A29F0A37600DF2DA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1114410C29F0A37600DF2DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		111B255D2A3E25F400948E3F /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		11475A9A2A3AADED008C5EEF /* UIImageView+CircularImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+CircularImage.swift"; sourceTree = "<group>"; };
+		11475AA02A3ABC4E008C5EEF /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		11908D5D2A0ADFFA00C62CB6 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		119832812A10396600AF6C7C /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
 		119C18442A10450B0060F29E /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
@@ -72,23 +76,65 @@
 		111440FD29F0A37400DF2DA9 /* iosCircleWgu */ = {
 			isa = PBXGroup;
 			children = (
+				111B255C2A3E25B600948E3F /* SwiftUIViews */,
+				11475A9F2A3ABB59008C5EEF /* ViewController */,
+				11475A9E2A3ABB51008C5EEF /* View */,
+				11475A9D2A3ABB3F008C5EEF /* Utills */,
+				11475A9C2A3ABB37008C5EEF /* Service */,
 				111440FE29F0A37400DF2DA9 /* AppDelegate.swift */,
 				1114410029F0A37400DF2DA9 /* SceneDelegate.swift */,
-				1114410229F0A37400DF2DA9 /* ViewController.swift */,
 				1114410429F0A37400DF2DA9 /* Main.storyboard */,
 				1114410729F0A37600DF2DA9 /* Assets.xcassets */,
 				1114410929F0A37600DF2DA9 /* LaunchScreen.storyboard */,
 				1114410C29F0A37600DF2DA9 /* Info.plist */,
-				11E645392A02162700B6BEB0 /* CreateCompanyController.swift */,
 				11908D5D2A0ADFFA00C62CB6 /* Company.swift */,
-				119832812A10396600AF6C7C /* CompaniesController.swift */,
-				119C18442A10450B0060F29E /* CompanyCell.swift */,
-				119C18452A10450B0060F29E /* CompanyCell.xib */,
 				111015F92A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld */,
-				1112E18C2A20171000D2658B /* CoreDataManager.swift */,
-				11475A9A2A3AADED008C5EEF /* UIImageView+CircularImage.swift */,
 			);
 			path = iosCircleWgu;
+			sourceTree = "<group>";
+		};
+		111B255C2A3E25B600948E3F /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				111B255D2A3E25F400948E3F /* ProductListView.swift */,
+			);
+			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
+		11475A9C2A3ABB37008C5EEF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1112E18C2A20171000D2658B /* CoreDataManager.swift */,
+				11475AA02A3ABC4E008C5EEF /* HTTPClient.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		11475A9D2A3ABB3F008C5EEF /* Utills */ = {
+			isa = PBXGroup;
+			children = (
+				11475A9A2A3AADED008C5EEF /* UIImageView+CircularImage.swift */,
+			);
+			path = Utills;
+			sourceTree = "<group>";
+		};
+		11475A9E2A3ABB51008C5EEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				119C18442A10450B0060F29E /* CompanyCell.swift */,
+				119C18452A10450B0060F29E /* CompanyCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11475A9F2A3ABB59008C5EEF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1114410229F0A37400DF2DA9 /* ViewController.swift */,
+				11E645392A02162700B6BEB0 /* CreateCompanyController.swift */,
+				119832812A10396600AF6C7C /* CompaniesController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,12 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111B255E2A3E25F400948E3F /* ProductListView.swift in Sources */,
 				11E6453A2A02162700B6BEB0 /* CreateCompanyController.swift in Sources */,
 				119832822A10396600AF6C7C /* CompaniesController.swift in Sources */,
 				1114410329F0A37400DF2DA9 /* ViewController.swift in Sources */,
 				119C18462A10450B0060F29E /* CompanyCell.swift in Sources */,
 				111440FF29F0A37400DF2DA9 /* AppDelegate.swift in Sources */,
 				111015FB2A2001EC00BE333D /* IOSLearningCircleModels.xcdatamodeld in Sources */,
+				11475AA12A3ABC4E008C5EEF /* HTTPClient.swift in Sources */,
 				1112E18D2A20171000D2658B /* CoreDataManager.swift in Sources */,
 				1114410129F0A37400DF2DA9 /* SceneDelegate.swift in Sources */,
 				11908D5E2A0ADFFA00C62CB6 /* Company.swift in Sources */,
