@@ -10,32 +10,33 @@ import SwiftUI
 struct ProductDetailView: View {
     let product: Product
     var body: some View {
-        NavigationView {
-            VStack {
-                
-                header
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        ForEach(product.images, id: \.self) {
-                            if let url = URL(string: $0) {
-                                AsyncImage(url: url) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 256, height: 128)
-                                } placeholder: {
-                                    Image(systemName: "questionmark.folder")
-                                }
+        
+        VStack {
+            
+            header
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    ForEach(product.images, id: \.self) {
+                        if let url = URL(string: $0) {
+                            AsyncImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 256, height: 128)
+                            } placeholder: {
+                                Image(systemName: "questionmark.folder")
                             }
                         }
                     }
                 }
-                
-                Spacer()
-                
             }
-            .navigationTitle(product.title)
+            
+            Spacer()
+            
         }
+        .navigationTitle(product.title)
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
     
     private var header: some View {

@@ -8,24 +8,48 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State var present : Bool = false
+    @State var isPresented : Bool = false
+    
     var body: some View {
         NavigationView {
             VStack {
-                Button {
-                    present = true
+                Text("This is the IOS learning Circle project. Please choose one of the options")
+                
+                NavigationLink {
+                    ProductListView()
                 } label: {
                     Text("Go to product list")
+                        .padding()
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 2)
+                        )
+                        .padding()
                 }
                 
                 Button {
-                    //
+                    // CompaniesControllerWrapper()
+                    isPresented.toggle()
                 } label: {
                     Text("Go to company list")
+                        .padding()
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 2)
+                        )
+                        .padding()
                 }
+                
+                Spacer()
             }
-            
-            .navigationDestination(isPresented: $present) {ProductListView()}
+            .navigationTitle(Text("Welcome"))
+            .sheet(isPresented: $isPresented) {
+                CompaniesControllerWrapper()
+            }
         }
     }
 }

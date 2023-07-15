@@ -21,14 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         //OLD showing views temp RJK
-        //let controller = CompaniesController(style: .insetGrouped)
-        //let navController = UINavigationController(rootViewController: controller)
-        //window?.rootViewController = navController
-        //window?.makeKeyAndVisible()
-        
-        let controller = UIHostingController(rootView: ProductListView())
-        window?.rootViewController = controller
+        let controller = CollectionViewController()
+        let navController = UINavigationController(rootViewController: controller)
+        window?.rootViewController = navController
         window?.makeKeyAndVisible()
+        
+        // This code is ok to show WelcomeView
+        //let controller = UIHostingController(rootView: WelcomeView())
+        //window?.rootViewController = controller
+        //window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
